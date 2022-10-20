@@ -1,0 +1,66 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+    <title>Title</title>
+</head>
+<body>
+
+    {% for p in parents %}
+        <ul>
+            <div>
+                <a class="btn" href="../../{{p.id}}/1/">{{p.name}}</a>
+            </div>
+            <br>
+    {% endfor %}
+
+    {% if childrens  %}
+        {% for ch in childrens %}
+                <a class="btn btn-primary" href="../../{{ch.id}}/1/">{{ch.name}}</a>
+        {% endfor %}
+    {% endif %}
+
+    <div class="row">
+        <ul>
+            {% for empl in employees.object_list %}
+                <div  class="{% cycle 'span4' 'span4' %} ">
+                    <li>
+                       {{empl.fio}}
+                    </li>
+                </div>
+            {% endfor %}
+        </ul>
+    </div>
+    <br>
+    <div class="row">
+        <div class="span12 text-center" style="text-align: center">
+            <ul class="pager" >
+                {% if employees.has_previous %}
+                        <li >
+                            <a href="../{{employees.previous_page_number}}/">&larr; Older</a>
+                        </li>
+                {% endif %}
+                {% if employees.has_next %}
+                        <li >
+                            <a href="../{{employees.next_page_number}}/">Newer &rarr;</a>
+                        </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    {% for p in parents %}
+        </ul>
+    {% endfor %}
+</body>
+</html>
+
+
+
+
+
+
+
